@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="width_service_item">120dp</dimen>
+    <dimen name="height_service_item">150dp</dimen>
+</resources>
