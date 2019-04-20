@@ -10,10 +10,10 @@
     <string name="laundry">Laundry</string>
     <string name="tiffins_snacks">Tiffins, Snacks</string>
     <string name="catering">Catering Service</string>
-    <string name="electrical_appliances">Electrical Appliance Service</string>
+    <string name="electrical_appliances">Electrical Repairs</string>
     <string name="vehicle_mechanic">Vehicle Service</string>
     <string name="pest_control">Pest Control</string>
     <string name="mesh_service">Mesh Service</string>
-    <string name="carpenters">Carpenter</string>
+    <string name="carpenters">Painters and Carpenters</string>
     <string name="maid">Maid</string>
 </resources>

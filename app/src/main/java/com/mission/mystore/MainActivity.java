@@ -65,20 +65,20 @@ public class MainActivity extends AppCompatActivity implements ServiceRecyclerVi
 
     private ArrayList<Service> getServiceList() {
         ArrayList<Service> services = new ArrayList<>();
-        services.add(new Service(getResources().getString(R.string.grocery), R.drawable.ic_launcher_foreground));
-        services.add(new Service(getResources().getString(R.string.medicine), R.drawable.ic_launcher_foreground));
-        services.add(new Service(getResources().getString(R.string.vegetables), R.drawable.ic_launcher_foreground));
-        services.add(new Service(getResources().getString(R.string.fruits), R.drawable.ic_launcher_foreground));
-        services.add(new Service(getResources().getString(R.string.organic_food), R.drawable.ic_launcher_foreground));
-        services.add(new Service(getResources().getString(R.string.poultry), R.drawable.ic_launcher_foreground));
-        services.add(new Service(getResources().getString(R.string.laundry), R.drawable.ic_launcher_foreground));
-        services.add(new Service(getResources().getString(R.string.tiffins_snacks), R.drawable.ic_launcher_foreground));
-        services.add(new Service(getResources().getString(R.string.catering), R.drawable.ic_launcher_foreground));
-        services.add(new Service(getResources().getString(R.string.electrical_appliances), R.drawable.ic_launcher_foreground));
-        services.add(new Service(getResources().getString(R.string.vehicle_mechanic), R.drawable.ic_launcher_foreground));
-        services.add(new Service(getResources().getString(R.string.pest_control), R.drawable.ic_launcher_foreground));
-        services.add(new Service(getResources().getString(R.string.mesh_service), R.drawable.ic_launcher_foreground));
-        services.add(new Service(getResources().getString(R.string.carpenters), R.drawable.ic_launcher_foreground));
+        services.add(new Service(getResources().getString(R.string.grocery), R.drawable.grocery));
+        services.add(new Service(getResources().getString(R.string.medicine), R.drawable.medicine));
+        services.add(new Service(getResources().getString(R.string.vegetables), R.drawable.vegetables));
+        services.add(new Service(getResources().getString(R.string.fruits), R.drawable.fruits));
+        services.add(new Service(getResources().getString(R.string.organic_food), R.drawable.organic_food));
+        services.add(new Service(getResources().getString(R.string.poultry), R.drawable.poultry));
+        services.add(new Service(getResources().getString(R.string.laundry), R.drawable.laundry));
+        services.add(new Service(getResources().getString(R.string.tiffins_snacks), R.drawable.tiffins));
+        services.add(new Service(getResources().getString(R.string.catering), R.drawable.catering));
+        services.add(new Service(getResources().getString(R.string.electrical_appliances), R.drawable.electrical_repair));
+        services.add(new Service(getResources().getString(R.string.vehicle_mechanic), R.drawable.vehicle_mechanic));
+        services.add(new Service(getResources().getString(R.string.pest_control), R.drawable.pest_control));
+        services.add(new Service(getResources().getString(R.string.mesh_service), R.drawable.mesh));
+        services.add(new Service(getResources().getString(R.string.carpenters), R.drawable.painter_carpenter));
         services.add(new Service(getResources().getString(R.string.maid), R.drawable.ic_launcher_foreground));
 
         return services;
