@@ -1,6 +1,8 @@
 package com.mission.mystore;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,15 +10,25 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mission.mystore.Adapter.ServiceRecyclerViewAdapter;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.mission.mystore.ServiceActivity.KEY_TYPE_SERVICE_ORDER;
 
 public class MainActivity extends AppCompatActivity implements ServiceRecyclerViewAdapter.ServiceClickListener {
 
+    public static final int REQUEST_SERVICE_ORDER = 1;
     private String TAG = MainActivity.class.getSimpleName();
     ServiceRecyclerViewAdapter mServiceRecyclerViewAdapter;
-    ArrayList<Service> mServices;
+    ArrayList<Service> mServiceList;
+    private Map<String, ServiceOrder> mServiceOrderMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,13 +36,14 @@ public class MainActivity extends AppCompatActivity implements ServiceRecyclerVi
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mServices = getServiceList();
+        mServiceList = getServiceList();
+        mServiceOrderMap = new HashMap<>();
         RecyclerView serviceRecyclerView = findViewById(R.id.rv_services);
         serviceRecyclerView.setHasFixedSize(true);
         serviceRecyclerView.setLayoutManager(new GridLayoutManager(this,
                 Utility.getNumOfColumns(this,
                         getResources().getDimension(R.dimen.width_service_item))));
-        mServiceRecyclerViewAdapter = new ServiceRecyclerViewAdapter(mServices, this);
+        mServiceRecyclerViewAdapter = new ServiceRecyclerViewAdapter(mServiceList, this);
         serviceRecyclerView.setAdapter(mServiceRecyclerViewAdapter);
     }
 
@@ -57,9 +70,35 @@ public class MainActivity extends AppCompatActivity implements ServiceRecyclerVi
     }
 
     @Override
-    public void onServiceItemClickListener(int pos) {
-        String service = mServices.get(pos).getName();
-        if (service.equals(getResources().getString(R.string.grocery))) {
+    public void onServiceItemClickListener(int serviceIndex) {
+        Gson gson = new Gson();
+        String serviceName = mServiceList.get(serviceIndex).getName();
+        if (serviceName.equals(getResources().getString(R.string.grocery))) {
+            Intent intent = new Intent(MainActivity.this, ServiceActivity.class);
+            if (mServiceOrderMap.containsKey(serviceName)) {
+                intent.putExtra(KEY_TYPE_SERVICE_ORDER, gson.toJson(mServiceOrderMap.get(serviceName)));
+            }
+            intent.putExtra(ServiceActivity.KEY_TYPE_SERVICE, serviceName);
+            startActivityForResult(intent, REQUEST_SERVICE_ORDER);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode) {
+            case REQUEST_SERVICE_ORDER: {
+                if (resultCode == RESULT_OK) {
+                    if (data != null &&
+                            data.hasExtra(KEY_TYPE_SERVICE_ORDER)) {
+                        Gson gson = new Gson();
+                        Type type = new TypeToken<ServiceOrder>() {}.getType();
+                        ServiceOrder remoteServiceOrder =
+                                gson.fromJson(data.getStringExtra(KEY_TYPE_SERVICE_ORDER) ,type);
+                        mServiceOrderMap.put(remoteServiceOrder.getServiceName(), remoteServiceOrder);
+                    }
+                }
+                break;
+            }
         }
     }
 

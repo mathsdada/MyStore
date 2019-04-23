@@ -5,7 +5,6 @@ import android.util.DisplayMetrics;
 
 public class Utility {
 
-
     public static int getNumOfColumns(Context context, float columnWidthDp) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         float screenWidthDp = displayMetrics.widthPixels / displayMetrics.density;

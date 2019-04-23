@@ -16,4 +16,5 @@
     <string name="mesh_service">Mesh Service</string>
     <string name="carpenters">Painters and Carpenters</string>
     <string name="maid">Maid</string>
+    <string name="title_activity_service">ServiceActivity</string>
 </resources>
